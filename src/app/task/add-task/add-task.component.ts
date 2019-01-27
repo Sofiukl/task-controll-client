@@ -3,6 +3,8 @@ import { Task } from 'src/app/model/task';
 import { Priority } from 'src/app/model/priority';
 import { Folder } from 'src/app/model/folder';
 import { TaskHttpService } from '../service/task-http.service';
+import { FolderHttpService } from 'src/app/folder/service/folder-http.service';
+import { CommonHttpService } from 'src/app/common/common-http.service';
 
 @Component({
   selector: 'app-add-task',
@@ -12,34 +14,20 @@ import { TaskHttpService } from '../service/task-http.service';
 export class AddTaskComponent implements OnInit {
 
   private task: Task;
-  private priorities: Array<Priority>;
-  private folders: Array<Folder>;
+  private priorities: Array<Priority> = [];
+  private folders: Array<Folder> = [];
   
-  constructor(private taskHttpService: TaskHttpService) { }
+  constructor(private taskHttpService: TaskHttpService,
+    private folderHttpService: FolderHttpService,
+    private commonHttpService: CommonHttpService) { }
 
   ngOnInit() {
     console.log('Add task module loadded successfully..');
     this.task = new Task();
 
     //dropdown values
-    this.priorities = [];
-    let priority1 = new Priority(1, "High");
-    let priority2 = new Priority(2, "Medium");
-    let priority3 = new Priority(3, "Low");
-
-    this.priorities.push(priority1);
-    this.priorities.push(priority2);
-    this.priorities.push(priority3);
-
-    this.folders = [];
-    let folder1 = new Folder(1, "Default");
-    let folder2 = new Folder(2, "Home");
-    let folder3 = new Folder(3, "Office");
-
-    this.folders.push(folder1);
-    this.folders.push(folder2);
-    this.folders.push(folder3);
-
+    this.setPrioityDropdown();
+    this.setFolderDropdown();
   }
 
   saveTask() {
@@ -49,6 +37,7 @@ export class AddTaskComponent implements OnInit {
         .subscribe(
           (data) => {
             console.log(JSON.stringify(data));
+            this.task = new Task();
           },
           (err) => {
             console.log(JSON.stringify(err));
@@ -57,4 +46,39 @@ export class AddTaskComponent implements OnInit {
    
   }
 
+  setFolderDropdown() {
+    this.folderHttpService.getFolders()
+        .subscribe(
+          (response) => {
+            const folderRes = response['result'];
+            folderRes.forEach((folder) => {
+              let folderObj = new Folder();
+              folderObj.setID(folder['id']);
+              folderObj.setName(folder['name']);    
+              this.folders.push(folderObj);
+            })
+            console.log(`Folders: ${JSON.stringify(this.folders)}`);
+          },
+          (err) => {
+            console.log(JSON.stringify(err));
+          }
+        )
+  }
+
+  setPrioityDropdown() {
+    this.commonHttpService.getPriorities()
+        .subscribe(
+          (response) => {
+            const priorityRes = response;
+            priorityRes.forEach((priority) => {
+              let priorityObj = new Priority(priority['id'], priority['name']);
+              this.priorities.push(priorityObj);
+            })
+            console.log(`Priorities: ${JSON.stringify(this.priorities)}`);
+          },
+          (err) => {
+            console.log(JSON.stringify(err));
+          }
+        )
+  }
 }

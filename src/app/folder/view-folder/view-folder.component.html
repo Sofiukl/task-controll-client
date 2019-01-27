@@ -1,0 +1,21 @@
+<div>
+    <table class="table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let folder of folders">
+                <td>
+                    {{folder.id}}
+                </td>
+                <td>
+                    {{folder.name}}
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

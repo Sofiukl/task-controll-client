@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
 import { AddTaskComponent } from './task/add-task/add-task.component';
 import { ViewTaskComponent } from './task/view-task/view-task.component';
+import { AddFolderComponent } from './folder/add-folder/add-folder.component';
+import { ViewFolderComponent } from './folder/view-folder/view-folder.component';
 
 const routes: Routes = [
   
@@ -21,10 +22,25 @@ const routes: Routes = [
     path: 'add-task', 
     component: AddTaskComponent 
   },
+  
+  { 
+    path: 'view-task/:feedid', 
+    component: ViewTaskComponent 
+  },
 
   { 
     path: 'view-task', 
     component: ViewTaskComponent 
+  },
+  
+  { 
+    path: 'add-folder', 
+    component: AddFolderComponent 
+  },
+
+  { 
+    path: 'view-folder', 
+    component: ViewFolderComponent 
   }
 
 ];

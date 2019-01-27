@@ -7,5 +7,6 @@ export class Priority {
         this.id = id;
         this.name = name;
     }
+    
 
 }

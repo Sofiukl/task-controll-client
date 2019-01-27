@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Add Your Project Folder</h1>
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Type Your Project Name" [(ngModel)]="folder.name" required>
+    </div>
+
+    <input type="submit" value="Add Project" (click)="saveProject()"/>
+
+</div>

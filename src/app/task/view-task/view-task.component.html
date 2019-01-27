@@ -1,7 +1,32 @@
-<p>
-  view-task works!
-</p>
-
 <div>
-  <span *ngFor="let Task of tasks">{{Task.name}}</span>
+    <table class="table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Assignee</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Folder</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks">
+                <td>
+                    {{task.id}}
+                </td>
+                <td>
+                    {{task.name}}
+                </td>
+                <td>
+                    {{task.assignee}}
+                </td>
+                <td>
+                    {{task.priorityName}}
+                </td>
+                <td>
+                    {{task.folderName}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

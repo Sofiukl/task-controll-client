@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskModule } from './task/task.module';
+import { FolderModule } from './folder/folder.module';
+import { CommonHttpService } from './common/common-http.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { TaskModule } from './task/task.module';
     BrowserModule,
     AppRoutingModule,
     TaskModule,
+    FolderModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CommonHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

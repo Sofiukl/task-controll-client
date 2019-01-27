@@ -1,11 +1,18 @@
 export class Folder {
     
-    private id: number;
+    private id: string;
     private name: string;
 
-    constructor(id: number, name: string) {
+    public setID(id: string) {
         this.id = id;
+    }
+    public setName(name: string) {
         this.name = name;
     }
-    
+    public getID() {
+        return this.id;
+    }
+    public getName() {
+        return this.name;
+    }
 }
