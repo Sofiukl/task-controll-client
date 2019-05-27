@@ -9,12 +9,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskModule } from './task/task.module';
 import { FolderModule } from './folder/folder.module';
 import { CommonHttpService } from './common/common-http.service';
+import { HighlightDirective } from './directives/highlight-me.directive';
+import { ViewAdvertisementComponent } from './dashboard/advertisement/view-advertisement.component';
+import { ViewFeedComponent } from './dashboard/view-feed/view-feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    HighlightDirective,
+    ViewAdvertisementComponent,
+    ViewFeedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,8 @@
-<p>
+<p appHighlight defaultColor="red">
     Welcome to {{ welcomeMsg }}!
 </p>
-<div class="container">
-    <div class="row">
-        <div [ngClass]="{'rcorners': true, 'col-sm-4':true, 'offset-sm-2':true}" *ngFor="let feed of feeds">
-            <a [routerLink]="[ '/view-task', feed.id]">{{feed.name}}</a><br/>
-            {{feed.taskCount}}
-        </div>
-    </div>
-</div>
+
+<app-view-feed (feedChangeEvent)="displayFeedSummarry($event)"></app-view-feed>
+<app-view-advertisement (addChangeEvent)="displayAddSummarry($event)" category="task-management"> </app-view-advertisement>
 
 

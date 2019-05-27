@@ -1,39 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { FolderHttpService } from '../folder/service/folder-http.service';
-import { Feed } from '../model/feed';
-import { FeedService } from './service/feed.service';
+import { Component, OnInit, AfterViewInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-
-  private welcomeMsg: string;
-
-  constructor(private feedHttpService: FeedService) { }
-  feeds : Array<Feed>
+export class DashboardComponent implements  OnInit, AfterViewInit, OnChanges, OnDestroy {
+  
+  welcomeMsg: string;
+  feedCount: any;
+  addCount: any;
+  
+  constructor() {}
+  
+  /**
+   * This is the life cycle method which is called first
+   * @override
+   * @param changes 
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+  /**
+   * This life cycle method called next to the ngOnChanges
+   */
   ngOnInit() {
+    console.log("DashboardComponent: ngOnInit")
     this.welcomeMsg = 'task-controll-client';
-    this.fetchAllFeeds();
+  }
+  /**
+   * This life cycle hook is called after component view 
+   * and its child view is rendered
+   */
+  ngAfterViewInit(): void {
+    console.log("DashboardComponent: ngAfterViewInit");
+  }
+  /**
+   * This life cycle hook is called just before the destroying
+   * the component
+   */
+  ngOnDestroy(): void {
+    console.log("DashboardComponent: ngOnDestroy");
   }
 
-  private addTask() {
-    console.log('Your task will be added..')
+  displayFeedSummarry($event) {
+    this.feedCount = $event;
   }
 
-  public fetchAllFeeds() {
-    this.feedHttpService.getFeedList()
-        .subscribe(
-            (response) => {
-              this.feeds = response['result'];
-              console.log(`Folder Fetch Result: ${JSON.stringify(response)}`);
-            },
-            (err) => {
-              console.log(JSON.stringify(err));
-            }
-        ) 
+  displayAddSummarry($event) {
+    this.addCount = $event;
   }
+ 
 
 }

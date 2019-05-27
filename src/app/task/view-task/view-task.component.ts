@@ -22,16 +22,23 @@ export class ViewTaskComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.feedId = params['feedid'];
     });
+    if (this.feedId) {
+      this.getFeedDetails();
+    } else {
+      this.getTaskDetails();
+    }
     
-    console.log(`Feed Id: ${this.feedId}`);
-    this.feedHttpService.getFeedDetails(this.feedId)
+  }
+  getTaskDetails() {
+    this.taskHttpService.getTasks()
         .subscribe(
             (response) => {
               if (response['error']) {
                 console.log('Fail to fetch Tasks..');
+              } else {
+                console.log(`Task Result: ${JSON.stringify(response)}`);
+                this.tasks = response['result'];
               }
-              console.log(`Feed Result: ${JSON.stringify(response)}`);
-              this.tasks = response['result'][0].tasks;
             },
             (err) => {
               console.log(JSON.stringify(err));
@@ -39,4 +46,22 @@ export class ViewTaskComponent implements OnInit {
         ) 
   }
 
+  getFeedDetails() {
+    console.log(`Feed Id: ${this.feedId}`);
+    this.feedHttpService.getFeedDetails(this.feedId)
+        .subscribe(
+            (response) => {
+              if (response['error']) {
+                console.log('Fail to fetch Tasks..');
+              } else {
+                console.log(`Feed Result: ${JSON.stringify(response)}`);
+                this.tasks = response['result'][0].tasks;
+              }
+              
+            },
+            (err) => {
+              console.log(JSON.stringify(err));
+            }
+        ) 
+  }
 }
