@@ -5,6 +5,7 @@ import { AddTaskComponent } from './task/add-task/add-task.component';
 import { ViewTaskComponent } from './task/view-task/view-task.component';
 import { AddFolderComponent } from './folder/add-folder/add-folder.component';
 import { ViewFolderComponent } from './folder/view-folder/view-folder.component';
+import { AuthGuardServiceService } from './common/auth-guard-service.service';
 
 const routes: Routes = [
   
@@ -20,7 +21,8 @@ const routes: Routes = [
 
   { 
     path: 'add-task', 
-    component: AddTaskComponent 
+    component: AddTaskComponent,
+    canActivate: [AuthGuardServiceService]
   },
   
   { 

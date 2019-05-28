@@ -22,14 +22,16 @@ export class ViewTaskComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.feedId = params['feedid'];
     });
+
+    //TODO: refactore this using factory pattern
     if (this.feedId) {
-      this.getFeedDetails();
+      this.getTasksForAFeed();
     } else {
-      this.getTaskDetails();
+      this.getTasks();
     }
     
   }
-  getTaskDetails() {
+  getTasks() {
     this.taskHttpService.getTasks()
         .subscribe(
             (response) => {
@@ -46,7 +48,7 @@ export class ViewTaskComponent implements OnInit {
         ) 
   }
 
-  getFeedDetails() {
+  getTasksForAFeed() {
     console.log(`Feed Id: ${this.feedId}`);
     this.feedHttpService.getFeedDetails(this.feedId)
         .subscribe(

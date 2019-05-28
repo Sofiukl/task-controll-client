@@ -1,3 +1,7 @@
+<p appHighlight defaultColor="red">
+  Welcome to {{ title }}!
+</p>
+
 <nav>
   <div>
     <a [routerLink]="[ '/add-folder']">Add Folder</a>
@@ -17,8 +21,10 @@
 
 </nav>
 
+<br/>
+
 <router-outlet></router-outlet>
 
 <br/>
-<br/>
+
 <div #copyright>@Task Control Team</div>

@@ -7,7 +7,6 @@ import { Component, OnInit, AfterViewInit, OnChanges, SimpleChanges, OnDestroy }
 })
 export class DashboardComponent implements  OnInit, AfterViewInit, OnChanges, OnDestroy {
   
-  welcomeMsg: string;
   feedCount: any;
   addCount: any;
   
@@ -25,8 +24,7 @@ export class DashboardComponent implements  OnInit, AfterViewInit, OnChanges, On
    * This life cycle method called next to the ngOnChanges
    */
   ngOnInit() {
-    console.log("DashboardComponent: ngOnInit")
-    this.welcomeMsg = 'task-controll-client';
+    console.log("DashboardComponent: ngOnInit");
   }
   /**
    * This life cycle hook is called after component view 
