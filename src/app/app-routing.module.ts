@@ -43,6 +43,11 @@ const routes: Routes = [
   { 
     path: 'view-folder', 
     component: ViewFolderComponent 
+  },
+
+  { 
+    path: 'task-chart',
+    loadChildren: './lazy/lazy.module#LazyModule'
   }
 
 ];
